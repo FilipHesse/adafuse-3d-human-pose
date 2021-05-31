@@ -221,7 +221,7 @@ def main():
         best_model = False
     perf_indicator = 0
     for epoch in range(start_epoch, config.TRAIN.END_EPOCH):
-        lr_scheduler.step()
+        
         extra_param = dict()
         extra_param['loss_mpjpe'] = criterion_mpjpe
 
@@ -272,6 +272,8 @@ def main():
                         'save_heatmaps': False, }
         perf_indicator = run_model(**valid_params)
 
+        lr_scheduler.step()
+        
         if run_phase == 'test':
             break  # if run mode is test, only run test one time is enough
 
