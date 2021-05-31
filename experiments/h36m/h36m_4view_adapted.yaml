@@ -13,7 +13,7 @@ DATASET:
   ROOT: '/home/filip/Documents/Thesis_local/Datasets'
   TRAIN_SUBSET: train
   TEST_SUBSET: validation
-  DATA_FORMAT: 'jpg'
+  DATA_FORMAT: 'zip'
   ROT_FACTOR: 40
   SCALE_FACTOR: 0.3
   NUM_USED_JOINTS: 17
