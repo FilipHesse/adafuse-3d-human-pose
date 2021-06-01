@@ -198,7 +198,7 @@ class JointsDataset(Dataset):
             meta['camera'] = db_rec['camera']
         elif source in ['h36m']:
             meta['camera'] = db_rec['camera']
-            meta['joints_gt'] = cam_utils.camera_to_world_frame(db_rec['joints_3d'], db_rec['camera']['R'], db_rec['camera']['T'])
+            meta['joints_gt'] = cam_utils.camera_to_world_frame(db_rec['joints_3d_camera'], db_rec['camera']['R'], db_rec['camera']['T'])
         elif source == 'panoptic':
             meta['camera'] = db_rec['camera']
             meta['joints_gt'] = db_rec['joints_gt']

@@ -196,7 +196,7 @@ class MultiViewH36M(JointsDataset):
         for idx, items in enumerate(self.grouping):
             # note that h36m joints_3d is in camera frame
             db_rec = self.db[items[0]]
-            j3d_global = cam_utils.camera_to_world_frame(db_rec['joints_3d'], db_rec['camera']['R'], db_rec['camera']['T'])
+            j3d_global = cam_utils.camera_to_world_frame(db_rec['joints_3d_camera'], db_rec['camera']['R'], db_rec['camera']['T'])
             gt3d.append(j3d_global)
         gt3d = np.array(gt3d)
 
