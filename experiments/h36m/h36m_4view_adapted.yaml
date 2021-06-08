@@ -19,8 +19,8 @@ DATASET:
   NUM_USED_JOINTS: 17
   NUM_VIEWS: 4
 NETWORK:
-  PRETRAINED: 'models/pytorch/pose_backbone/h36m_4view_d87025.pth.tar'
-  ADAFUSE: 'models/pytorch/adafuse/h36m_4view.pth.tar'
+  PRETRAINED: '/home/filip/Coding/Thesis_code/adafuse-3d-human-pose/models/pytorch/pose_backbone/h36m_4view_d87025.pth.tar'
+  ADAFUSE: '/home/filip/Coding/Thesis_code/adafuse-3d-human-pose/models/pytorch/adafuse/h36m_4view.pth.tar'
   TARGET_TYPE: gaussian
   AGGRE: false
   HEATMAP_SIZE:
