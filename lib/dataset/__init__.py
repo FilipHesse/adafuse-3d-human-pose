@@ -18,6 +18,7 @@ from dataset.unrealcv_dataset import UnrealcvData as unrealcv
 
 # joint mapping
 def get_joint_mapping(dataset_name):
+    logger.info(dataset_name)
     if dataset_name in ['multiview_h36m']:
         general_joint_mapping = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: '*', 9: 8, 10: '*', 11: 9, 12: 10,
                                  13: '*', 14: 11, 15: 12, 16: 13, 17: 14, 18: 15, 19: 16}
