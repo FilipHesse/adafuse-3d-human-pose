@@ -139,7 +139,7 @@ class CamFusionModule(nn.Module):
             n_channel = heatmaps.shape[1]
             heatmaps_sample = heatmaps.view(batch, self.nview, n_channel, self.h, self.w).permute(0,2,1,3,4).contiguous()
             # sample_hm = F.grid_sample(heatmaps_sample, grid)
-            sample_hm = F.grid_sample(heatmaps_sample, grid, mode='nearest')
+            sample_hm = F.grid_sample(heatmaps_sample, grid, mode='nearest', align_corners=True)
             sample_hm_max, max_indice = torch.max(sample_hm, dim=4)
             sample_hm_max = sample_hm_max.view(batch, n_channel, self.nview, self.nview-1, self.h, self.w)
             sample_hm_max = sample_hm_max.permute(0,2,3,1,4,5).contiguous()
