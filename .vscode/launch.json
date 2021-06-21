@@ -10,7 +10,8 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args" : ["--cfg", "experiments/h36m/h36m_4view_adapted.yaml", "--evaluate", "true"]
+            "justMyCode": false,
+            "args" : ["--cfg", "experiments/h36m/h36m_4view_gait.yaml", "--evaluate", "true"]            
         }
     ]
 }

@@ -65,32 +65,66 @@ class MultiViewH36MGait(JointsDataset):
             with open(grouping_db_pickle_file, 'wb') as f:
                 pickle.dump(grouping_db_to_dump, f)
 
+        #Filter for only one walking_scene
+        self.grouping = self.groups_query(self.db, self.grouping, "Walk", 1, 9, True)
+
+
         if self.is_train:
             self.grouping = self.grouping[::20]
         else:
             self.grouping = self.grouping[::64]
 
         self.group_size = len(self.grouping)
-        self.selected_cam = [0,1,2,3]
+        self.selected_cam = [0, 1, 2, 3]
 
     def index_to_action_names(self):
         return {
+            1: 'Miscellaneous',
             2: 'Direction',
             3: 'Discuss',
             4: 'Eating',
             5: 'Greet',
             6: 'Phone',
-            7: 'Photo',
-            8: 'Pose',
-            9: 'Purchase',
-            10: 'Sitting',
-            11: 'SittingDown',
-            12: 'Smoke',
+            7: 'Pose',
+            8: 'Purchase',
+            9: 'Sitting',
+            10: 'SittingDown',
+            11: 'Smoke',
+            12: 'Photo',
             13: 'Wait',
-            14: 'WalkDog',
-            15: 'Walk',
+            14: 'Walk',
+            15: 'WalkDog',
             16: 'WalkTwo'
         }
+
+    
+    def groups_query( self, db, groups, action, subaction, subject, print_summary=False ):
+        if type(action) == str:
+            for action_index, name in self.index_to_action_names().items():
+                if name == action:
+                    break
+                
+        action = int(action_index)
+        
+        i_changing_subaction = [0]
+        next_subaction_beginning = 0
+        i=0
+        while next_subaction_beginning < len(groups):
+            last_subcation_beginning_view0 = groups[i_changing_subaction[-1]][0]
+            last_subcation_beginning_view1 = groups[i_changing_subaction[-1]][1]
+            last_subcation_beginning_view3 = groups[i_changing_subaction[-1]][3]
+            last_subcation_length = last_subcation_beginning_view1-last_subcation_beginning_view0
+            next_subaction_beginning = i_changing_subaction[-1]+last_subcation_length
+            if next_subaction_beginning < len(groups):
+                i_changing_subaction.append(next_subaction_beginning)
+                
+        if print_summary:
+            for i in i_changing_subaction:
+                print(f"action {db[groups[i][0]]['action']} subaction {db[groups[i][0]]['subaction']} videoID: {db[groups[i][0]]['video_id']} subject: {db[groups[i][0]]['subject']}")
+        
+        for list_ind, i in enumerate(i_changing_subaction):
+            if db[groups[i][0]]['action'] == action and db[groups[i][0]]['subaction'] == subaction and db[groups[i][0]]['subject'] == subject:
+                return groups[i:i_changing_subaction[list_ind+1]]
 
     def load_db(self, dataset_file):
         with open(dataset_file, 'rb') as f:
@@ -165,14 +199,16 @@ class MultiViewH36MGait(JointsDataset):
             for item in items:
                 gt.append(self.db[item]['joints_2d'][su, :2])
                 flat_items.append(self.db[item])
-                boxsize = np.array(self.db[item]['scale']).sum() * 100.0  # crop img pixels
+                # crop img pixels
+                boxsize = np.array(self.db[item]['scale']).sum() * 100.0
                 box_lengthes.append(boxsize)
         gt = np.array(gt)
         if pred.shape[1] == 20:
             pred = pred[:, su, :2]
         elif pred.shape[1] == 17:
             pred = pred[:, :, :2]
-        detection_threshold = np.array(box_lengthes).reshape((-1, 1)) * threshold
+        detection_threshold = np.array(
+            box_lengthes).reshape((-1, 1)) * threshold
 
         distance = np.sqrt(np.sum((gt - pred)**2, axis=2))
         detected = (distance <= detection_threshold)
@@ -185,18 +221,20 @@ class MultiViewH36MGait(JointsDataset):
             name_values[joint_names[sa[i]]] = joint_detection_rate[i]
         detected_int = detected.astype(np.int)
         nsamples, njoints = detected.shape
-        per_grouping_detected = detected_int.reshape(nsamples // nview, nview * njoints)
+        per_grouping_detected = detected_int.reshape(
+            nsamples // nview, nview * njoints)
         return name_values, np.mean(joint_detection_rate), per_grouping_detected
 
     def evaluate_3d(self, preds3d, thresholds=None):
         if thresholds is None:
-            thresholds = [5., 10., 15., 20., 25., 50., 75., 100., 125., 150.,]
+            thresholds = [5., 10., 15., 20., 25., 50., 75., 100., 125., 150., ]
 
         gt3d = []
         for idx, items in enumerate(self.grouping):
             # note that h36m joints_3d is in camera frame
             db_rec = self.db[items[0]]
-            j3d_global = cam_utils.camera_to_world_frame(db_rec['joints_3d_camera'], db_rec['camera']['R'], db_rec['camera']['T'])
+            j3d_global = cam_utils.camera_to_world_frame(
+                db_rec['joints_3d_camera'], db_rec['camera']['R'], db_rec['camera']['T'])
             gt3d.append(j3d_global)
         gt3d = np.array(gt3d)
 
