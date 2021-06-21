@@ -204,7 +204,7 @@ def run_model(
             joints_vis_3d = torch.as_tensor(nviews_vis >= 2, dtype=torch.float32).cuda()
             for k in j3d_keys:
                 preds = extra[k]
-                if config.DATASET.TRAIN_DATASET in ['multiview_h36m']:
+                if config.DATASET.TRAIN_DATASET in ['multiview_h36m','multiview_h36m_gait']:
                     preds = align_to_pelvis(preds, pose3d_gt, 0)
 
                 avg_mpjpe, detail_mpjpe, n_valid_joints = criterion_mpjpe(preds, pose3d_gt, joints_vis_3d=joints_vis_3d, output_batch_mpjpe=True)

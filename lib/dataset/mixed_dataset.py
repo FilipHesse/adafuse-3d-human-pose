@@ -14,6 +14,7 @@ import numpy as np
 from core.config import config
 from dataset.joints_dataset import JointsDataset
 from dataset.multiview_h36m import MultiViewH36M
+from dataset.multiview_h36m_gait import MultiViewH36MGait
 from dataset.mpii import MPIIDataset
 
 

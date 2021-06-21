@@ -11,6 +11,7 @@ from __future__ import print_function
 
 from dataset.mpii import MPIIDataset as mpii
 from dataset.multiview_h36m import MultiViewH36M as multiview_h36m
+from dataset.multiview_h36m_gait import MultiViewH36MGait as multiview_h36m_gait
 from dataset.mixed_dataset import MixedDataset as mixed
 from dataset.multiview_mpii import MultiviewMPIIDataset as multiview_mpii
 from dataset.unrealcv_dataset import UnrealcvData as unrealcv
@@ -18,7 +19,7 @@ from dataset.unrealcv_dataset import UnrealcvData as unrealcv
 
 # joint mapping
 def get_joint_mapping(dataset_name):
-    if dataset_name in ['multiview_h36m']:
+    if dataset_name in ['multiview_h36m','multiview_h36m_gait']:
         general_joint_mapping = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: '*', 9: 8, 10: '*', 11: 9, 12: 10,
                                  13: '*', 14: 11, 15: 12, 16: 13, 17: 14, 18: 15, 19: 16}
     elif dataset_name == 'totalcapture':
