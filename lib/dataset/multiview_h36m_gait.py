@@ -72,7 +72,9 @@ class MultiViewH36MGait(JointsDataset):
         if self.is_train:
             self.grouping = self.grouping[::20]
         else:
-            self.grouping = self.grouping[::64]
+        #   self.grouping = self.grouping[::64]
+            pass
+
 
         self.group_size = len(self.grouping)
         self.selected_cam = [0, 1, 2, 3]
@@ -124,6 +126,7 @@ class MultiViewH36MGait(JointsDataset):
         
         for list_ind, i in enumerate(i_changing_subaction):
             if db[groups[i][0]]['action'] == action and db[groups[i][0]]['subaction'] == subaction and db[groups[i][0]]['subject'] == subject:
+                print(len(groups[i:i_changing_subaction[list_ind+1]]))
                 return groups[i:i_changing_subaction[list_ind+1]]
 
     def load_db(self, dataset_file):

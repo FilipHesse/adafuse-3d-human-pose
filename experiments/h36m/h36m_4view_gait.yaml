@@ -5,7 +5,7 @@ DATA_DIR: ''
 OUTPUT_DIR: 'output'
 LOG_DIR: 'log'
 WORKERS: 1
-PRINT_FREQ: 100
+PRINT_FREQ: 1
 
 DATASET:
   TRAIN_DATASET: multiview_h36m_gait
@@ -75,8 +75,8 @@ TEST:
   MODEL_FILE: ''
   NMS_THRE: 0.6
   OKS_THRE: 0.5
-  POST_PROCESS: false
-  USE_GT_BBOX: true
+  POST_PROCESS: true
+  USE_GT_BBOX: false
 PICT_STRUCT:
   PAIRWISE_FILE: 'data/pict/pairwise.pkl'
 DEBUG:
