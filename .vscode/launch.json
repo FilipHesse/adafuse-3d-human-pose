@@ -11,7 +11,8 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": false,
-            "args" : ["--cfg", "experiments/h36m/h36m_4view_gait.yaml", "--evaluate", "true"]            
+            //"args" : ["--cfg", "experiments/h36m/h36m_4view_gait.yaml", "--evaluate", "true"]   
+            "args" : ["--cfg", "experiments/h36m/h36m_4view_gait.yaml", "--runMode", "train"]      
         }
     ]
 }

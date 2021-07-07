@@ -45,7 +45,7 @@ class MultiViewH36MGait(JointsDataset):
         self.u2a_mapping = super().get_mapping()
 
         grouping_db_pickle_file = osp.join(self.root, 'h36m', 'quickload',
-                                           'h36m_quickload_{}.pkl'
+                                           'h36m_full_quickload_{}.pkl'
                                            .format(image_set))
         if osp.isfile(grouping_db_pickle_file):
             with open(grouping_db_pickle_file, 'rb') as f:
@@ -54,7 +54,7 @@ class MultiViewH36MGait(JointsDataset):
                 self.db = grouping_db['db']
         else:
             anno_file = osp.join(self.root, 'h36m', 'annot',
-                                 'h36m_{}.pkl'.format(image_set))
+                                 'h36m_full_{}.pkl'.format(image_set))
             self.db = self.load_db(anno_file)
 
             self.u2a_mapping = super().get_mapping()
