@@ -161,6 +161,8 @@ def main():
     gpus = [int(i) for i in config.GPUS.split(',')]
     model = torch.nn.DataParallel(model, device_ids=gpus).cuda()
 
+    print(model)
+
     criterion = JointsMSELoss(
         use_target_weight=config.LOSS.USE_TARGET_WEIGHT).cuda()
     criterion_mpjpe = JointMPJPELoss().cuda()

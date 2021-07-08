@@ -39,28 +39,32 @@ class JointsDataset(Dataset):
         self.transform = transform
         self.db = []
 
-        self.num_joints = 20
+        self.num_joints = 24
         self.union_joints = {
             0: 'root',
             1: 'rhip',
             2: 'rkne',
-            3: 'rank',
-            4: 'lhip',
-            5: 'lkne',
-            6: 'lank',
-            7: 'belly',
-            8: 'thorax',
-            9: 'neck',
-            10: 'upper neck',
-            11: 'nose',
-            12: 'head',
-            13: 'head top',
-            14: 'lsho',
-            15: 'lelb',
-            16: 'lwri',
-            17: 'rsho',
-            18: 'relb',
-            19: 'rwri'
+            3: 'rhee',
+            4: 'rfoo',
+            5: 'rtoe',
+            6: 'lhip',
+            7: 'lkne',
+            8: 'lhee',
+            9: 'lfoo',
+            10: 'ltoe',
+            11: 'belly',
+            12: 'thorax',
+            13: 'neck',
+            14: 'upper neck',
+            15: 'nose',
+            16: 'head',
+            17: 'head top',
+            18: 'lsho',
+            19: 'lelb',
+            20: 'lwri',
+            21: 'rsho',
+            22: 'relb',
+            23: 'rwri'
         }
         self.actual_joints = {}
         self.u2a_mapping = {}
