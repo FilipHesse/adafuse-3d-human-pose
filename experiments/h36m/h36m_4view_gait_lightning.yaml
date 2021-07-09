@@ -16,10 +16,10 @@ DATASET:
   DATA_FORMAT: 'jpeg'
   ROT_FACTOR: 40
   SCALE_FACTOR: 0.3
-  NUM_USED_JOINTS: 17
+  NUM_USED_JOINTS: 21
   NUM_VIEWS: 4
 NETWORK:
-  PRETRAINED: '/media/DATA/Datasets/filip/adafuse_models/pytorch/pose_backbone/h36m_4view_d87025.pth.tar'
+  PRETRAINED: '/media/DATA/Datasets/filip/adafuse_models/pytorch/pose_backbone/h36m_4view_gait.pth.tar'
   ADAFUSE: '/media/DATA/Datasets/filip/adafuse_models/pytorch/adafuse/h36m_4view.pth.tar'
   TARGET_TYPE: gaussian
   AGGRE: false
@@ -29,7 +29,7 @@ NETWORK:
   IMAGE_SIZE:
   - 384
   - 384
-  NUM_JOINTS: 20
+  NUM_JOINTS: 21
   SIGMA: 3
 POSE_RESNET:
   FINAL_CONV_KERNEL: 1

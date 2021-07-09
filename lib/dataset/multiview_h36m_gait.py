@@ -26,26 +26,30 @@ class MultiViewH36MGait(JointsDataset):
             0: 'root',
             1: 'rhip',
             2: 'rkne',
-            3: 'rank',
-            4: 'lhip',
-            5: 'lkne',
-            6: 'lank',
-            7: 'belly',
-            8: 'neck',
-            9: 'nose',
-            10: 'head',
-            11: 'lsho',
-            12: 'lelb',
-            13: 'lwri',
-            14: 'rsho',
-            15: 'relb',
-            16: 'rwri'
+            3: 'rhee',
+            4: 'rfoo',
+            5: 'rtoe',
+            6: 'lhip',
+            7: 'lkne',
+            8: 'lhee',
+            9: 'lfoo',
+            10: 'ltoe', 
+            11: 'belly',
+            12: 'neck',
+            13: 'nose',
+            14: 'head',
+            15: 'lsho',
+            16: 'lelb',
+            17: 'lwri',
+            18: 'rsho',
+            19: 'relb',
+            20: 'rwri'
         }
 
         self.u2a_mapping = super().get_mapping()
 
         grouping_db_pickle_file = osp.join(self.root, 'h36m', 'quickload',
-                                           'h36m_full_quickload_{}.pkl'
+                                           'h36m_{}_gait_quickload.pkl'
                                            .format(image_set))
         if osp.isfile(grouping_db_pickle_file):
             with open(grouping_db_pickle_file, 'rb') as f:
@@ -54,7 +58,7 @@ class MultiViewH36MGait(JointsDataset):
                 self.db = grouping_db['db']
         else:
             anno_file = osp.join(self.root, 'h36m', 'annot',
-                                 'h36m_full_{}.pkl'.format(image_set))
+                                 'h36m_{}_gait.pkl'.format(image_set))
             self.db = self.load_db(anno_file)
 
             self.u2a_mapping = super().get_mapping()
@@ -66,7 +70,7 @@ class MultiViewH36MGait(JointsDataset):
                 pickle.dump(grouping_db_to_dump, f)
 
         #Filter for only one walking_scene
-        self.grouping = self.groups_query(self.db, self.grouping, "Walk", 1, 9, True)
+        #self.grouping = self.groups_query(self.db, self.grouping, "Walk", 1, 9, True)
 
 
         if self.is_train:
