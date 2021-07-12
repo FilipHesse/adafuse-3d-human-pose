@@ -30,7 +30,7 @@ class MultiViewPose(nn.Module):
         super(MultiViewPose, self).__init__()
         self.config = CFG
         general_joint_mapping = get_joint_mapping(self.config.DATASET.TRAIN_DATASET)
-        reverse_joint_mapping = {general_joint_mapping[k]: k for k in range(20) if general_joint_mapping[k]!='*'}
+        reverse_joint_mapping = {general_joint_mapping[k]: k for k in range(max(general_joint_mapping.keys())+1) if general_joint_mapping[k]!='*'}
         self.joint_mapping = []
         for k in sorted(reverse_joint_mapping.keys()):
             self.joint_mapping.append(reverse_joint_mapping[k])
