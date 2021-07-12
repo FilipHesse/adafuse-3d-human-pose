@@ -19,7 +19,7 @@ DATASET:
   NUM_USED_JOINTS: 21
   NUM_VIEWS: 4
 NETWORK:
-  PRETRAINED: '/media/DATA/Datasets/filip/adafuse_models/pytorch/pose_backbone/h36m_4view_gait.pth.tar'
+  PRETRAINED: '/media/DATA/Datasets/filip/adafuse_models/pytorch/pose_backbone/h36m_4view_d87025.pth.tar'
   ADAFUSE: '/media/DATA/Datasets/filip/adafuse_models/pytorch/adafuse/h36m_4view.pth.tar'
   TARGET_TYPE: gaussian
   AGGRE: false

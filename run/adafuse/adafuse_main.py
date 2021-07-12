@@ -153,16 +153,13 @@ def main():
     # Load backbone part
     # load pretrained backbone
     # Note this backbone is already trained on current dataset
-    reshape_backbone = False
+    reshape_backbone = True
     pretrained_backbone_file = Path(config.DATA_DIR) / config.NETWORK.PRETRAINED
     if os.path.exists(pretrained_backbone_file):
         if reshape_backbone:
-            current_model=model.state_dict()
-            keys_vin=torch.load(pretrained_backbone_file, map_location=torch.device('cpu'))
-            new_state_dict={k:v if v.size()==current_model[k].size()  else  current_model[k] for k,v in zip(current_model.keys(), keys_vin.values())  }
-            model.load_state_dict(new_state_dict
-            , strict=False)
-            torch.save(model.state_dict(), "/media/DATA/Datasets/filip/adafuse_models/pytorch/adafuse/h36m_4view_gait_shape.pth.tar")
+            orig_model = torch.load(pretrained_backbone_file, map_location='cpu')
+            mod_weights = removekey(orig_model,['resnet.final_layer.weight', 'resnet.final_layer.bias'])
+            model.load_state_dict(mod_weights, strict=False)
         else:
             model.load_state_dict(torch.load(pretrained_backbone_file), strict=False)
 
