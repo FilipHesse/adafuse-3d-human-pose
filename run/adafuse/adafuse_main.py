@@ -82,6 +82,8 @@ def parse_args():
         '--modelFile', help='model for test', type=str, default='0')
     parser.add_argument(
         '--evaluate', help='directly use provided model to evaluate results', type=str2bool, default='0')
+    parser.add_argument(
+        '--transfer', help='load backbone and adafuse and transfer learn with other keypoints', type=str2bool, default='0')
     args = parser.parse_args()
     update_dir(args.modelDir, args.logDir, args.dataDir)
     return args
@@ -98,6 +100,12 @@ def reset_config(config, args):
         selected_cams = [int(c) for c in args.cams.split(',')]
         config.MULTI_CAMS.SELECTED_CAMS = selected_cams
 
+def removekey(d, listofkeys):
+    r = dict(d)
+    for key in listofkeys:
+        print('key: {} is removed'.format(key))
+        r.pop(key)
+    return r
 
 def main():
     torch.set_printoptions(precision=2, sci_mode=False, linewidth=300)
@@ -162,6 +170,15 @@ def main():
         run_phase = 'test'
         model_file_path = config.NETWORK.ADAFUSE
         model.load_state_dict(torch.load(model_file_path), strict=True)
+        logger.info('=> loading model from {} for evaluating'.format(model_file_path))
+    elif args.transfer:
+        model_file_path = config.NETWORK.ADAFUSE
+        orig_model = torch.load(model_file_path, map_location='cpu')
+        mod_weights = removekey(orig_model,['resnet.final_layer.weight', 'resnet.final_layer.bias'])
+        model.load_state_dict(mod_weights, strict=False)
+
+        
+        #model.load_state_dict(torch.load(model_file_path), strict=False)
         logger.info('=> loading model from {} for evaluating'.format(model_file_path))
     elif run_phase == 'test':
         model_state_file = os.path.join(final_output_dir, model_file)
