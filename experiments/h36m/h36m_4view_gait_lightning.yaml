@@ -5,7 +5,7 @@ DATA_DIR: ''
 OUTPUT_DIR: '/media/DATA/Datasets/filip/output'
 LOG_DIR: 'log'
 WORKERS: 1
-PRINT_FREQ: 1
+PRINT_FREQ: 100
 
 DATASET:
   TRAIN_DATASET: multiview_h36m_gait
