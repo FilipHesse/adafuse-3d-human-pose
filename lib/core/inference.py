@@ -78,7 +78,7 @@ def get_final_preds(config, batch_heatmaps, center, scale):
     #         ceter_flat.append(center[nv][b].cpu().numpy())
     #         scale_flat.append(scale[nv][b].cpu().numpy())
 
-    if isinstance(center, (list, tuple)):
+    if isinstance(center, (list, tuple, np.ndarray)):
         pass
     else:
         center = center.cpu().numpy()
