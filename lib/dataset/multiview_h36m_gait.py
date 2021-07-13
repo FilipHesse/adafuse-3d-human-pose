@@ -210,7 +210,7 @@ class MultiViewH36MGait(JointsDataset):
                 boxsize = np.array(self.db[item]['scale']).sum() * 100.0
                 box_lengthes.append(boxsize)
         gt = np.array(gt)
-        if pred.shape[1] == 20:
+        if pred.shape[1] == 20 or pred.shape[1] == 24:
             pred = pred[:, su, :2]
         elif pred.shape[1] == 17:
             pred = pred[:, :, :2]
