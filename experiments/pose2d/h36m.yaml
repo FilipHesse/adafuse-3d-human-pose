@@ -8,12 +8,12 @@ WORKERS: 1
 PRINT_FREQ: 100
 
 DATASET:
-  TRAIN_DATASET: mixed
-  TEST_DATASET: multiview_h36m
-  ROOT: 'data/'
+  TRAIN_DATASET: multiview_h36m_gait
+  TEST_DATASET: multiview_h36m_gait
+  ROOT: '/home/filip/Documents/Thesis_local/Datasets'
   TRAIN_SUBSET: train
   TEST_SUBSET: validation
-  DATA_FORMAT: 'zip'
+  DATA_FORMAT: 'jpeg'
   ROT_FACTOR: 20
   SCALE_FACTOR: 0.15
 NETWORK:
@@ -26,7 +26,7 @@ NETWORK:
   IMAGE_SIZE:
   - 384
   - 384
-  NUM_JOINTS: 20
+  NUM_JOINTS: 24
   SIGMA: 3
 POSE_RESNET:
   FINAL_CONV_KERNEL: 1

@@ -12,7 +12,8 @@
             "console": "integratedTerminal",
             "justMyCode": false,
             //"args" : ["--cfg", "experiments/h36m/h36m_4view_gait.yaml", "--evaluate", "true"]   
-            "args" : ["--cfg", "experiments/h36m/h36m_4view_gait.yaml", "--runMode", "train"]      
+            //"args" : ["--cfg", "experiments/h36m/h36m_4view_gait.yaml", "--runMode", "train"]      
+            "args" : ["--cfg", "experiments/pose2d/h36m.yaml"]      
         }
     ]
 }
