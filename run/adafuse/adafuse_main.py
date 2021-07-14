@@ -153,7 +153,7 @@ def main():
     # Load backbone part
     # load pretrained backbone
     # Note this backbone is already trained on current dataset
-    reshape_backbone = True
+    reshape_backbone = False
     pretrained_backbone_file = Path(config.DATA_DIR) / config.NETWORK.PRETRAINED
     if os.path.exists(pretrained_backbone_file):
         if reshape_backbone:
