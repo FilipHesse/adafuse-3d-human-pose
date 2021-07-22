@@ -2,15 +2,15 @@ GPUS: '0'
 BACKBONE_MODEL: pose_resnet
 MODEL: dlt_3dpose_net
 DATA_DIR: ''
-OUTPUT_DIR: 'output'
+OUTPUT_DIR: '/media/DATA/Datasets/filip/output'
 LOG_DIR: 'log'
 WORKERS: 1
-PRINT_FREQ: 100
+PRINT_FREQ: 1
 
 DATASET:
   TRAIN_DATASET: emarolab
   TEST_DATASET: emarolab
-  ROOT: '/home/filip/Documents/Thesis_local/Datasets/Emarolab/extracted_scenes/S4_Normal_0_0_900-0_2_700'
+  ROOT: '/media/DATA/Datasets/Gait_EmaroLab/extracted_scenes/S4_Normal_00_00_900-00_02_700'
   TRAIN_SUBSET: train
   TEST_SUBSET: validation
   DATA_FORMAT: 'jpeg'
@@ -19,8 +19,8 @@ DATASET:
   NUM_USED_JOINTS: 21
   NUM_VIEWS: 3
 NETWORK:
-  PRETRAINED: '/home/filip/Coding/Thesis_code/adafuse-3d-human-pose/models/pytorch/pose_backbone/h36m_4view_gait_trained.pth.tar'
-  ADAFUSE: '/home/filip/Coding/Thesis_code/adafuse-3d-human-pose/models/pytorch/adafuse/h36m_4view_gait_keypoints.pth.tar'
+  PRETRAINED: '/media/DATA/Datasets/filip/adafuse_models/pytorch/pose_backbone/h36m_4view_gait_trained.pth.tar'
+  ADAFUSE: '/media/DATA/Datasets/filip/adafuse_models/pytorch/adafuse/h36m_4view_gait_keypoints.pth.tar'
   TARGET_TYPE: gaussian
   AGGRE: false
   HEATMAP_SIZE:

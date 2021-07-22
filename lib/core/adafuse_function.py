@@ -37,7 +37,7 @@ class AverageMeter(object):
         self.val = val
         self.sum += val * n
         self.count += n
-        self.avg = self.sum / self.count
+        self.avg = self.sum / self.count if not n == 0 else 0
 
 
 def collate_first_two_dims(tensor):

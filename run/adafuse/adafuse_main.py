@@ -295,6 +295,7 @@ def main():
                         'optimizer': optimizer,
                         'epoch': epoch,
                         'is_train': False,
+                        
                         'save_heatmaps': False, }
         perf_indicator = run_model(**valid_params)
 

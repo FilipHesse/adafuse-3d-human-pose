@@ -74,8 +74,8 @@ class Emarolab3View(JointsDataset):
         if self.is_train:
             self.grouping = self.grouping[::20]
         else:
-            self.grouping = self.grouping[::64]
-            #pass
+            #self.grouping = self.grouping[::64]
+            pass
 
 
         self.group_size = len(self.grouping)
