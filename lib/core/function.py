@@ -139,7 +139,7 @@ def validate(config,
 
     if config.DATASET.TEST_DATASET in ['multiview_h36m', 'multiview_h36m_gait']:
         nviews = 4
-    elif config.DATASET.TEST_DATASET in ['totalcapture', 'panoptic', 'unrealcv']:
+    elif config.DATASET.TEST_DATASET in ['totalcapture', 'panoptic', 'unrealcv', 'emarolab']:
         nviews = len(config.MULTI_CAMS.SELECTED_CAMS)
     else:
         assert 'Not defined dataset'
