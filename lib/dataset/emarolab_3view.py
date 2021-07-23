@@ -13,6 +13,7 @@ import os.path as osp
 import numpy as np
 import pickle
 import collections
+import copy
 
 from dataset.joints_dataset import JointsDataset
 import multiviews.cameras as cam_utils
@@ -108,6 +109,7 @@ class Emarolab3View(JointsDataset):
         items = self.grouping[idx]
         for item in items:
             i, t, w, m = super().__getitem__(item)
+            db_rec = copy.deepcopy(self.db[idx])
             # data type convert to float32
             m['scale'] = m['scale'].astype(np.float32)
             m['center'] = m['center'].astype(np.float32)
@@ -117,6 +119,7 @@ class Emarolab3View(JointsDataset):
             for k in m['camera']:
                 m['camera'][k] = m['camera'][k].astype(np.float32)
 
+            m['joints_vis'] = db_rec['joints_vis'].copy()
             input.append(i)
             target.append(t)
             weight.append(w)
