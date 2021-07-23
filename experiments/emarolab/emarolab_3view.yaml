@@ -10,7 +10,7 @@ PRINT_FREQ: 1
 DATASET:
   TRAIN_DATASET: emarolab
   TEST_DATASET: emarolab
-  ROOT: '/media/DATA/Datasets/Gait_EmaroLab/extracted_scenes/S4_Normal_00_00_900-00_02_700'
+  ROOT: '/media/DATA/Datasets/Gait_EmaroLab/extracted_scenes/S10_Normal_00_02_100-00_05_000'
   TRAIN_SUBSET: train
   TEST_SUBSET: validation
   DATA_FORMAT: 'jpeg'
