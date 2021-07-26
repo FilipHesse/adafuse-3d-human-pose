@@ -277,8 +277,8 @@ def run_model(
                 meta_for_debug_imgs['joints_2d_transformed'] = meta['joints_2d_transformed']
                 save_debug_images(config, input, meta_for_debug_imgs, target,
                                   pre * 4, origin_hms, prefix)
-                # save_debug_images_2(config, input, meta_for_debug_imgs, target,
-                #                   pre * 4, output, prefix, suffix='fuse')
+                save_debug_images_2(config, input, meta_for_debug_imgs, target,
+                                   pre * 4, output, prefix, suffix='fuse')
                 save_debug_images_2(config, input, meta_for_debug_imgs, target,
                                     pre * 0, fused_hms_smax, prefix, suffix='smax', normalize=True, IMG=False)
 

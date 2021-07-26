@@ -209,6 +209,9 @@ class JointsDataset(Dataset):
         elif source in ['unrealcv']:
             meta['camera'] = db_rec['camera']
             meta['joints_gt'] = db_rec['joints_gt']
+        elif source == 'emarolab':
+            meta['camera'] = db_rec['camera']
+            meta['joints_gt'] = db_rec['joints_gt']
         else:
             assert 0==1, 'No such dataset definition in JointDataset'
         return input, target, target_weight, meta
